@@ -4,6 +4,7 @@ import {
   deleteRoomById,
   editRoomById,
   getAllRoom,
+  getAvailableRoom,
   getRoomById,
 } from "./room.service";
 import { payload } from "../../utils";
@@ -14,15 +15,40 @@ export const getAllRoomController = async (req: Request, res: Response) => {
     const room = await getAllRoom();
 
     console.log("mengambil semua data kamar");
-    payload(res, 200, "berhasil mengambil semua data kamar", room);
+    return payload(res, 200, "berhasil mengambil semua data kamar", room);
   } catch (error: any) {
     if (error instanceof Error) {
       if (error.message.includes("tidak ada")) {
-        payload(res, 404, error.message);
+        return payload(res, 200, error.message);
       }
     }
     console.log(error.message);
-    payload(res, 500, "server error");
+    return payload(res, 500, "server error");
+  }
+};
+
+export const getAvailableRoomController = async (
+  req: Request,
+  res: Response
+) => {
+  try {
+    const room = await getAvailableRoom();
+
+    console.log("mengambil data kamar yang tersedia");
+    return payload(
+      res,
+      200,
+      "berhasil mengambil data kamar yang tersedia",
+      room
+    );
+  } catch (error: any) {
+    if (error instanceof Error) {
+      if (error.message.includes("tidak ada")) {
+        return payload(res, 200, error.message);
+      }
+    }
+    console.log(error.message);
+    return payload(res, 500, "server error");
   }
 };
 
@@ -45,7 +71,7 @@ export const getRoomByIdController = async (
   } catch (error: any) {
     if (error instanceof Error) {
       if (error.message.includes("tidak ditemukan")) {
-        payload(res, 404, error.message);
+        payload(res, 200, error.message);
       }
     }
 
@@ -93,7 +119,7 @@ export const deleteRoomByIdController = async (
   } catch (error: any) {
     if (error instanceof Error) {
       if (error.message.includes("tidak ditemukan")) {
-        payload(res, 404, error.message);
+        payload(res, 200, error.message);
       }
     }
     console.log(error.message);
@@ -115,7 +141,7 @@ export const editRoomByIdController = async (
   } catch (error: any) {
     if (error instanceof Error) {
       if (error.message.includes("tidak ditemukan")) {
-        payload(res, 404, error.message);
+        payload(res, 200, error.message);
       }
 
       if (error.message.includes("wajib diisi")) {

@@ -177,7 +177,7 @@ export type TenantGroupByOutputType = {
   phone: string
   start_date: Date | null
   next_payment_date: Date | null
-  payment_status: $Enums.PaymentStatus
+  payment_status: $Enums.PaymentStatus | null
   is_active: boolean
   created_at: Date
   roomId: string | null
@@ -210,7 +210,7 @@ export type TenantWhereInput = {
   phone?: Prisma.StringFilter<"Tenant"> | string
   start_date?: Prisma.DateTimeNullableFilter<"Tenant"> | Date | string | null
   next_payment_date?: Prisma.DateTimeNullableFilter<"Tenant"> | Date | string | null
-  payment_status?: Prisma.EnumPaymentStatusFilter<"Tenant"> | $Enums.PaymentStatus
+  payment_status?: Prisma.EnumPaymentStatusNullableFilter<"Tenant"> | $Enums.PaymentStatus | null
   is_active?: Prisma.BoolFilter<"Tenant"> | boolean
   created_at?: Prisma.DateTimeFilter<"Tenant"> | Date | string
   roomId?: Prisma.StringNullableFilter<"Tenant"> | string | null
@@ -223,7 +223,7 @@ export type TenantOrderByWithRelationInput = {
   phone?: Prisma.SortOrder
   start_date?: Prisma.SortOrderInput | Prisma.SortOrder
   next_payment_date?: Prisma.SortOrderInput | Prisma.SortOrder
-  payment_status?: Prisma.SortOrder
+  payment_status?: Prisma.SortOrderInput | Prisma.SortOrder
   is_active?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
   roomId?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -239,7 +239,7 @@ export type TenantWhereUniqueInput = Prisma.AtLeast<{
   phone?: Prisma.StringFilter<"Tenant"> | string
   start_date?: Prisma.DateTimeNullableFilter<"Tenant"> | Date | string | null
   next_payment_date?: Prisma.DateTimeNullableFilter<"Tenant"> | Date | string | null
-  payment_status?: Prisma.EnumPaymentStatusFilter<"Tenant"> | $Enums.PaymentStatus
+  payment_status?: Prisma.EnumPaymentStatusNullableFilter<"Tenant"> | $Enums.PaymentStatus | null
   is_active?: Prisma.BoolFilter<"Tenant"> | boolean
   created_at?: Prisma.DateTimeFilter<"Tenant"> | Date | string
   roomId?: Prisma.StringNullableFilter<"Tenant"> | string | null
@@ -252,7 +252,7 @@ export type TenantOrderByWithAggregationInput = {
   phone?: Prisma.SortOrder
   start_date?: Prisma.SortOrderInput | Prisma.SortOrder
   next_payment_date?: Prisma.SortOrderInput | Prisma.SortOrder
-  payment_status?: Prisma.SortOrder
+  payment_status?: Prisma.SortOrderInput | Prisma.SortOrder
   is_active?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
   roomId?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -270,7 +270,7 @@ export type TenantScalarWhereWithAggregatesInput = {
   phone?: Prisma.StringWithAggregatesFilter<"Tenant"> | string
   start_date?: Prisma.DateTimeNullableWithAggregatesFilter<"Tenant"> | Date | string | null
   next_payment_date?: Prisma.DateTimeNullableWithAggregatesFilter<"Tenant"> | Date | string | null
-  payment_status?: Prisma.EnumPaymentStatusWithAggregatesFilter<"Tenant"> | $Enums.PaymentStatus
+  payment_status?: Prisma.EnumPaymentStatusNullableWithAggregatesFilter<"Tenant"> | $Enums.PaymentStatus | null
   is_active?: Prisma.BoolWithAggregatesFilter<"Tenant"> | boolean
   created_at?: Prisma.DateTimeWithAggregatesFilter<"Tenant"> | Date | string
   roomId?: Prisma.StringNullableWithAggregatesFilter<"Tenant"> | string | null
@@ -282,7 +282,7 @@ export type TenantCreateInput = {
   phone: string
   start_date?: Date | string | null
   next_payment_date?: Date | string | null
-  payment_status?: $Enums.PaymentStatus
+  payment_status?: $Enums.PaymentStatus | null
   is_active?: boolean
   created_at?: Date | string
   room?: Prisma.RoomCreateNestedOneWithoutTenantsInput
@@ -294,7 +294,7 @@ export type TenantUncheckedCreateInput = {
   phone: string
   start_date?: Date | string | null
   next_payment_date?: Date | string | null
-  payment_status?: $Enums.PaymentStatus
+  payment_status?: $Enums.PaymentStatus | null
   is_active?: boolean
   created_at?: Date | string
   roomId?: string | null
@@ -306,7 +306,7 @@ export type TenantUpdateInput = {
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   start_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   next_payment_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  payment_status?: Prisma.EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
+  payment_status?: Prisma.NullableEnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus | null
   is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   room?: Prisma.RoomUpdateOneWithoutTenantsNestedInput
@@ -318,7 +318,7 @@ export type TenantUncheckedUpdateInput = {
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   start_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   next_payment_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  payment_status?: Prisma.EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
+  payment_status?: Prisma.NullableEnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus | null
   is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   roomId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -330,7 +330,7 @@ export type TenantCreateManyInput = {
   phone: string
   start_date?: Date | string | null
   next_payment_date?: Date | string | null
-  payment_status?: $Enums.PaymentStatus
+  payment_status?: $Enums.PaymentStatus | null
   is_active?: boolean
   created_at?: Date | string
   roomId?: string | null
@@ -342,7 +342,7 @@ export type TenantUpdateManyMutationInput = {
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   start_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   next_payment_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  payment_status?: Prisma.EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
+  payment_status?: Prisma.NullableEnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus | null
   is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -353,7 +353,7 @@ export type TenantUncheckedUpdateManyInput = {
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   start_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   next_payment_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  payment_status?: Prisma.EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
+  payment_status?: Prisma.NullableEnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus | null
   is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   roomId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -451,8 +451,8 @@ export type NullableDateTimeFieldUpdateOperationsInput = {
   set?: Date | string | null
 }
 
-export type EnumPaymentStatusFieldUpdateOperationsInput = {
-  set?: $Enums.PaymentStatus
+export type NullableEnumPaymentStatusFieldUpdateOperationsInput = {
+  set?: $Enums.PaymentStatus | null
 }
 
 export type NullableStringFieldUpdateOperationsInput = {
@@ -465,7 +465,7 @@ export type TenantCreateWithoutRoomInput = {
   phone: string
   start_date?: Date | string | null
   next_payment_date?: Date | string | null
-  payment_status?: $Enums.PaymentStatus
+  payment_status?: $Enums.PaymentStatus | null
   is_active?: boolean
   created_at?: Date | string
 }
@@ -476,7 +476,7 @@ export type TenantUncheckedCreateWithoutRoomInput = {
   phone: string
   start_date?: Date | string | null
   next_payment_date?: Date | string | null
-  payment_status?: $Enums.PaymentStatus
+  payment_status?: $Enums.PaymentStatus | null
   is_active?: boolean
   created_at?: Date | string
 }
@@ -516,7 +516,7 @@ export type TenantScalarWhereInput = {
   phone?: Prisma.StringFilter<"Tenant"> | string
   start_date?: Prisma.DateTimeNullableFilter<"Tenant"> | Date | string | null
   next_payment_date?: Prisma.DateTimeNullableFilter<"Tenant"> | Date | string | null
-  payment_status?: Prisma.EnumPaymentStatusFilter<"Tenant"> | $Enums.PaymentStatus
+  payment_status?: Prisma.EnumPaymentStatusNullableFilter<"Tenant"> | $Enums.PaymentStatus | null
   is_active?: Prisma.BoolFilter<"Tenant"> | boolean
   created_at?: Prisma.DateTimeFilter<"Tenant"> | Date | string
   roomId?: Prisma.StringNullableFilter<"Tenant"> | string | null
@@ -528,7 +528,7 @@ export type TenantCreateManyRoomInput = {
   phone: string
   start_date?: Date | string | null
   next_payment_date?: Date | string | null
-  payment_status?: $Enums.PaymentStatus
+  payment_status?: $Enums.PaymentStatus | null
   is_active?: boolean
   created_at?: Date | string
 }
@@ -539,7 +539,7 @@ export type TenantUpdateWithoutRoomInput = {
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   start_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   next_payment_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  payment_status?: Prisma.EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
+  payment_status?: Prisma.NullableEnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus | null
   is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -550,7 +550,7 @@ export type TenantUncheckedUpdateWithoutRoomInput = {
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   start_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   next_payment_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  payment_status?: Prisma.EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
+  payment_status?: Prisma.NullableEnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus | null
   is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -561,7 +561,7 @@ export type TenantUncheckedUpdateManyWithoutRoomInput = {
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   start_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   next_payment_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  payment_status?: Prisma.EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
+  payment_status?: Prisma.NullableEnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus | null
   is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -641,7 +641,7 @@ export type $TenantPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
     phone: string
     start_date: Date | null
     next_payment_date: Date | null
-    payment_status: $Enums.PaymentStatus
+    payment_status: $Enums.PaymentStatus | null
     is_active: boolean
     created_at: Date
     roomId: string | null

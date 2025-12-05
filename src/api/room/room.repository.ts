@@ -17,6 +17,16 @@ export const fetchRoomById = async (id: string) => {
   return room;
 };
 
+export const fetchAvailableRoom = async () => {
+  const room = await prisma.room.findMany({
+    where: {
+      is_available: true,
+    },
+  });
+
+  return room;
+};
+
 export const fetchRoomByRoomNumber = async (room_number: string) => {
   const room = await prisma.room.findUnique({
     where: {

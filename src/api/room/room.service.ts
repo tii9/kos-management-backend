@@ -2,6 +2,7 @@ import { RoomType } from "../../types";
 import {
   dropRoomById,
   fetchAllRooms,
+  fetchAvailableRoom,
   fetchRoomById,
   fetchRoomByRoomNumber,
   insertNewRoom,
@@ -10,6 +11,15 @@ import {
 
 export const getAllRoom = async () => {
   const room = await fetchAllRooms();
+
+  if (!room.length)
+    throw new Error("tidak ada data, silahkan menambahkan data");
+
+  return room;
+};
+
+export const getAvailableRoom = async () => {
+  const room = await fetchAvailableRoom();
 
   if (!room.length)
     throw new Error("tidak ada data, silahkan menambahkan data");

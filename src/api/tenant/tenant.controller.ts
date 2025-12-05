@@ -14,15 +14,15 @@ export const getAllTenantsController = async (req: Request, res: Response) => {
     const tenant = await getAllTenants();
 
     console.log("mengambil semua data penyewa");
-    payload(res, 200, "berhasil mengambil semua data penyewa", tenant);
+    return payload(res, 200, "berhasil mengambil semua data penyewa", tenant);
   } catch (error: any) {
     if (error instanceof Error) {
       if (error.message.includes("tidak ada")) {
-        payload(res, 404, error.message);
+        return payload(res, 200, error.message);
       }
     }
     console.log(error.message);
-    payload(res, 500, "server error");
+    return payload(res, 500, "server error");
   }
 };
 
@@ -36,7 +36,7 @@ export const getTenantByIdController = async (
     const tenant = await getTenantById(id);
 
     console.log(`mengambil data penyewa: ${tenant.name}`);
-    payload(
+    return payload(
       res,
       200,
       `berhasil mengambil data penyewa: ${tenant.name}`,
@@ -45,12 +45,12 @@ export const getTenantByIdController = async (
   } catch (error: any) {
     if (error instanceof Error) {
       if (error.message.includes("tidak ditemukan")) {
-        payload(res, 404, error.message);
+        return payload(res, 200, error.message);
       }
     }
 
     console.log(error.message);
-    payload(res, 500, "server error");
+    return payload(res, 500, "server error");
   }
 };
 
@@ -63,16 +63,16 @@ export const createNewTenantController = async (
     const tenant = await createNewTenant(data);
 
     console.log("berhasil membuat data penyewa baru");
-    payload(res, 201, "berhasil membuat data penyewa baru", tenant);
+    return payload(res, 201, "berhasil membuat data penyewa baru", tenant);
   } catch (error: any) {
     if (error instanceof Error) {
       if (error.message.includes("wajib diisi")) {
-        payload(res, 400, error.message);
+        return payload(res, 400, error.message);
       }
     }
 
     console.log(error.message);
-    payload(res, 500, "server error");
+    return payload(res, 500, "server error");
   }
 };
 
@@ -89,7 +89,7 @@ export const deleteTenantByIdController = async (
   } catch (error: any) {
     if (error instanceof Error) {
       if (error.message.includes("tidak ditemukan")) {
-        payload(res, 404, error.message);
+        payload(res, 200, error.message);
       }
     }
     console.log(error.message);
@@ -111,7 +111,7 @@ export const editTenantByIdController = async (
   } catch (error: any) {
     if (error instanceof Error) {
       if (error.message.includes("tidak ditemukan")) {
-        payload(res, 404, error.message);
+        payload(res, 200, error.message);
       }
 
       if (error.message.includes("wajib diisi")) {

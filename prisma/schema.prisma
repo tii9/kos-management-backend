@@ -32,14 +32,14 @@ model Room {
 }
 
 model Tenant {
-  id                String        @id @default(uuid())
+  id                String         @id @default(uuid())
   name              String
   phone             String
   start_date        DateTime?
   next_payment_date DateTime?
-  payment_status    PaymentStatus @default(pending)
-  is_active         Boolean       @default(true)
-  created_at        DateTime      @default(now())
+  payment_status    PaymentStatus?
+  is_active         Boolean        @default(true)
+  created_at        DateTime       @default(now())
 
   // Relasi
   room   Room?   @relation(fields: [roomId], references: [id])

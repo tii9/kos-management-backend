@@ -18,7 +18,7 @@ app.use(
 );
 
 app.use("/api/auth", AuthRouter);
-app.use("/api/room/", RoomRouter);
+app.use("/api/room", RoomRouter);
 app.use("/api/tenant", TenantRouter);
 
 app.get("/", (_, res) => {
