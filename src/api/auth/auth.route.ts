@@ -7,7 +7,7 @@ import { AuthMiddleware } from "../../middleware/auth.middleware";
 
 const AuthRouter = express.Router();
 
-AuthRouter.get("/", getUserByUsernameController);
+AuthRouter.post("/login", getUserByUsernameController);
 AuthRouter.post("/", createUserController);
 
 AuthRouter.get("/test", AuthMiddleware, (req, res) => {

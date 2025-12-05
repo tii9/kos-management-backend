@@ -49,8 +49,8 @@ export const deleteRoomById = async (id: string) => {
 };
 
 export const editRoomById = async (id: string, data: RoomType) => {
-  if (!data.room_number || !data.price_per_month || !data.is_available) {
-    throw new Error("nomor kamar dan harga wajib diisi");
+  if (!data.room_number || !data.price_per_month) {
+    throw new Error("Nomor kamar dan harga wajib diisi");
   }
 
   await getRoomById(id);
