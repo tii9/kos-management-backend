@@ -1,4 +1,5 @@
 import { TenantType } from "../../types";
+import { editRoomById, updateRoomStatus } from "../room/room.service";
 import {
   dropTenantById,
   fetchAllTenants,
@@ -47,9 +48,35 @@ export const editTenantById = async (id: string, data: TenantType) => {
     throw new Error("nama dan no hp penyewa wajib diisi");
   }
 
-  await getTenantById(id);
+  const tenant = await getTenantById(id);
+  if (!tenant) {
+    throw new Error("penyewa tidak ditemukan");
+  }
 
-  const room = await updateTenantById(id, data);
+  const oldRoomId = tenant.roomId;
+  const newRoomId = data.roomId;
 
-  return room;
+  // --- Jika tenant tidak aktif → lepas kamar lama saja ---
+  if (!data.is_active) {
+    if (oldRoomId) {
+      await updateRoomStatus(oldRoomId, true); // kamar lama available
+    }
+  }
+  // --- Jika tenant aktif → proses kamar baru ---
+  else {
+    // 1. Jika pilih kamar baru yang beda dari kamar lama
+    if (newRoomId && newRoomId !== oldRoomId) {
+      // kamar baru di-set tidak tersedia
+      await updateRoomStatus(newRoomId, false);
+    }
+
+    // 2. Jika kamar lama berbeda dengan kamar baru → lepaskan kamar lama
+    if (oldRoomId && oldRoomId !== newRoomId) {
+      await updateRoomStatus(oldRoomId, true);
+    }
+  }
+
+  const updatedTenant = await updateTenantById(id, data);
+
+  return updatedTenant;
 };

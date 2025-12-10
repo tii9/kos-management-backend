@@ -7,6 +7,7 @@ import {
   fetchRoomByRoomNumber,
   insertNewRoom,
   updateRoomById,
+  updateRoomStatusById,
 } from "./room.repository";
 
 export const getAllRoom = async () => {
@@ -30,6 +31,7 @@ export const getAvailableRoom = async () => {
 export const getRoomById = async (id: string) => {
   const room = await fetchRoomById(id);
 
+  console.log(id);
   if (!room) throw new Error("data kamar tidak ditemukan");
 
   return room;
@@ -68,4 +70,9 @@ export const editRoomById = async (id: string, data: RoomType) => {
   const room = await updateRoomById(id, data);
 
   return room;
+};
+
+export const updateRoomStatus = async (id: string, status: boolean) => {
+  await getRoomById(id);
+  await updateRoomStatusById(id, status);
 };

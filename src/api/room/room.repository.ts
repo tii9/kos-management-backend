@@ -70,3 +70,17 @@ export const updateRoomById = async (id: string, data: RoomType) => {
 
   return room;
 };
+
+export const updateRoomStatusById = async (
+  id: string,
+  is_available: boolean
+) => {
+  const room = await prisma.room.update({
+    where: { id },
+    data: {
+      is_available,
+    },
+  });
+
+  return room;
+};

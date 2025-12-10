@@ -35,6 +35,11 @@ export const updateTenantById = async (id: string, data: TenantType) => {
     data: {
       name: data.name,
       phone: data.phone,
+      start_date: data.start_date,
+      next_payment_date: data.next_payment_date,
+      is_active: data.is_active,
+      payment_status: data.payment_status,
+      roomId: data.roomId ?? null,
     },
   });
 
